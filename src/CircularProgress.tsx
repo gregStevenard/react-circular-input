@@ -11,16 +11,17 @@ type Props = JSX.IntrinsicElements['circle'] &
 		transform?: undefined
 	}
 
-const defaultProps = {
-	stroke: '#3D99FF',
-}
+// const defaultProps = {
+// 	stroke: '#3D99FF',
+// }
 
-export const CircularProgress = (props: Props) => {
+export const CircularProgress = ({ stroke =  '#3D99FF', ...rest}: Props) => {
 	const { value, radius, center } = useCircularInputContext()
 	const innerCircumference = DEG_360_IN_RAD * radius
 	return (
 		<CircularTrack
-			{...props}
+			stroke={stroke}
+			{...rest}
 			strokeDasharray={innerCircumference}
 			strokeDashoffset={innerCircumference * (1 - value)}
 			transform={`rotate(-90 ${center.x} ${center.y})`}
@@ -28,4 +29,4 @@ export const CircularProgress = (props: Props) => {
 	)
 }
 
-CircularProgress.defaultProps = defaultProps
+// CircularProgress.defaultProps = defaultProps

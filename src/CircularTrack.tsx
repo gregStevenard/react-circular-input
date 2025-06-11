@@ -10,20 +10,23 @@ export type Props = JSX.IntrinsicElements['circle'] & {
 	r?: undefined
 }
 
-export const defaultProps = {
-	stroke: '#CEE0F5',
-	fill: 'none',
-	strokeWidth: 20,
-	strokeLinecap: 'round',
-}
+// export const defaultProps = {
+// 	stroke: '#CEE0F5',
+// 	fill: 'none',
+// 	strokeWidth: 20,
+// 	strokeLinecap: 'round',
+// }
 
-export const CircularTrack = ({ strokeWidth, ...props }: Props) => {
+export const CircularTrack = ({ stroke = '#CEE0F5', fill = 'none', strokeWidth = 20, strokeLinecap = 'round', ...props }: Props) => {
 	const { radius, center } = useCircularInputContext()
 	const ref = useRef<SVGCircleElement | null>(null)
 	useCircularDrag(ref)
 	return (
 		<circle
+			stroke={stroke}
+			fill={fill}
 			strokeWidth={strokeWidth}
+			strokeLinecap={strokeLinecap}
 			{...props}
 			ref={ref}
 			cx={center.x}
@@ -33,4 +36,4 @@ export const CircularTrack = ({ strokeWidth, ...props }: Props) => {
 	)
 }
 
-CircularTrack.defaultProps = defaultProps
+// CircularTrack.defaultProps = defaultProps
